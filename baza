@@ -1,0 +1,64 @@
+CREATE TABLE IF NOT EXISTS orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+CREATE TABLE IF NOT EXISTS order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+
+
+
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    image VARCHAR(255)
+);
+    
+
+INSERT INTO products (name, category, price, image) VALUES
+
+('Heineken', 'Бира', 2.50, 'heineken.jpg'),
+('Stella Artois', 'Бира', 3.00, 'stella.jpg'),
+('Beck’s', 'Бира', 2.80, 'becks.jpg'),
+('Paulaner', 'Бира', 3.50, 'paulaner.jpg'),
+('Guinness', 'Бира', 4.00, 'guinness.jpg'),
+
+('Cabernet Sauvignon', 'Вино', 12.50, 'cabernet.jpg'),
+('Merlot', 'Вино', 10.00, 'merlot.jpg'),
+('Chardonnay', 'Вино', 11.50, 'chardonnay.jpg'),
+('Pinot Noir', 'Вино', 14.00, 'pinot_noir.jpg'),
+('Sauvignon Blanc', 'Вино', 13.00, 'sauvignon.jpg'),
+
+('Absolut', 'Спиртни напитки - Водка', 20.00, 'absolut.jpg'),
+('Smirnoff', 'Спиртни напитки - Водка', 18.50, 'smirnoff.jpg'),
+('Finlandia', 'Спиртни напитки - Водка', 22.00, 'finlandia.jpg'),
+('Grey Goose', 'Спиртни напитки - Водка', 35.00, 'grey_goose.jpg'),
+('Belvedere', 'Спиртни напитки - Водка', 40.00, 'belvedere.jpg'),
+
+('Jameson', 'Спиртни напитки - Уиски', 25.00, 'jameson.jpg'),
+('Jack Daniel’s', 'Спиртни напитки - Уиски', 30.00, 'jack_daniels.jpg'),
+('Chivas Regal', 'Спиртни напитки - Уиски', 45.00, 'chivas.jpg'),
+('Johnnie Walker', 'Спиртни напитки - Уиски', 50.00, 'johnnie_walker.jpg'),
+('Ballantine’s', 'Спиртни напитки - Уиски', 28.00, 'ballantines.jpg'),
+
+('Ouzo 12', 'Спиртни напитки - Узо', 15.00, 'ouzo12.jpg'),
+('Plomari', 'Спиртни напитки - Узо', 17.50, 'plomari.jpg'),
+('Barbayanni', 'Спиртни напитки - Узо', 20.00, 'barbayanni.jpg'),
+('Mini Mytilinis', 'Спиртни напитки - Узо', 13.50, 'mini.jpg'),
+('Metaxa Ouzo', 'Спиртни напитки - Узо', 19.00, 'metaxa.jpg');
+
